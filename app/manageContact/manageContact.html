@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="text-left">
+        <a href="#/contacts"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    </div>
+    <h1 class="text-center addContact" ng-if="!editStatus">Add Contact</h1>
+    <h1 class="text-center addContact" ng-if="editStatus">Edit Contact</h1>
+    <form class="form-horizontal" name="contactForm" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : contactForm.firstName.$invalid && contactForm.firstName.$touched }">
+            <label class="control-label col-sm-2 " for="firstName">First Name:</label>
+            <div class="col-sm-10">
+                <input id="firstName" name="firstName" class="form-control address " data-ng-model="contact.firstName" type="text" placeholder="Enter your first name" required>
+                <p ng-show="contactForm.firstName.$invalid && contactForm.firstName.$touched" class="help-block">Your first name is required.</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : contactForm.lastName.$invalid && contactForm.lastName.$touched }">
+            <label class="control-label col-sm-2 " for="lastName">Last Name:</label>
+            <div class="col-sm-10">
+                <input id="lastName" name="lastName" class="form-control address" data-ng-model="contact.lastName" type="text" placeholder="Enter your last name" required>
+                <p ng-show="contactForm.lastName.$invalid && contactForm.lastName.$touched" class="help-block">Your last name is required.</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : contactForm.email.$invalid && contactForm.email.$touched }">
+            <label class="control-label col-sm-2 " for="email">contactEmail:</label>
+            <div class="col-sm-10">
+                <input id="email" name="email" class="form-control address" data-ng-model="contact.contactEmail" type="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" placeholder="Enter your email" required>
+                <p ng-show="contactForm.email.$invalid && contactForm.email.$touched" class="help-block">A valid email is required.</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : contactForm.contactNumber.$invalid && contactForm.contactNumber.$touched }">
+            <label class="control-label col-sm-2 " for="contactNumber">contactNumber:</label>
+            <div class="col-sm-10">
+                <input id="contactNumber" name="contactNumber" class="form-control address" data-ng-model="contact.contactNumber" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" placeholder="Enter your Phone Number" required>
+                <p ng-show="contactForm.contactNumber.$invalid && contactForm.contactNumber.$touched" class="help-block">A valid Phone Number is required.</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button ng-if="!editStatus" class="btn btn-primary editButton" type="button" data-ng-disabled="contactForm.$invalid" data-ng-click="insertContact()">Add Contact</button>
+                <button ng-if="editStatus" class="btn btn-primary editButton" type="button" data-ng-disabled="contactForm.$invalid" data-ng-click="editContact()">Save Contact</button>
+                <button ng-if="editStatus" class="btn btn-danger editButton" type="button" data-ng-disabled="contactForm.$invalid" data-ng-click="deleteContact()">Delete Contact</button>
+            </div>
+        </div>
+    </form>
+</div>

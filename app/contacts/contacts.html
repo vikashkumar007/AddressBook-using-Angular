@@ -1,0 +1,36 @@
+<div class="table-container">
+    <h1 class="text-center contact">Contacts</h1>
+    <div>
+        <a class="btn btn-primary editButton" role="button" href="#/add-contact">Add Contact</a>
+    </div>
+    <div class="table-responsive">
+        <table st-table="rowCollection" class="table table-striped address">
+            <thead>
+                <tr>
+                    <th lr-drag-src="headers" lr-drop-target="headers" ng-repeat="col in columns" st-sort="{{col}}" class="{{col}}">{{col}}</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <th colspan="6">
+                        <input st-search placeholder="global search" class="input-sm form-control" type="search" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="" ng-repeat="row in rowCollection">
+                    <td class="{{col}}" ng-repeat="col in columns">{{row[col]}}</td>
+                    <td>
+                        <button class="btn btn-warning editButton" data-ng-click="editContact(row.id)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
